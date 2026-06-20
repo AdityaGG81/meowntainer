@@ -18,16 +18,20 @@ model Test {
 }
 
 model User {
-  id            String    @id
-  name          String
-  email         String
-  emailVerified Boolean   @default(false)
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  sessions      Session[]
-  accounts      Account[]
-  githubInstallation GithubInstallation?
+  id                     String              @id
+  name                   String
+  email                  String
+  emailVerified          Boolean             @default(false)
+  image                  String?
+  plan                   String              @default("free") // free | pro
+  razorpaySubscriptionId String?
+  subscriptionStatus     String? // active | canceled | trialing
+  subscriptionRenewsAt   DateTime?
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime            @updatedAt
+  sessions               Session[]
+  accounts               Account[]
+  githubInstallation     GithubInstallation?
 
   @@unique([email])
   @@map("user")
@@ -115,8 +119,6 @@ model Account {
   @@index([userId])
   @@map("account")
 }
-
- 
 
 model Verification {
   id         String   @id
