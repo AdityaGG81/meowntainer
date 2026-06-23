@@ -2,7 +2,7 @@ import { DashboardRepo } from "@/features/dashboard/lib/types";
 import { infiniteQueryOptions } from "@tanstack/react-query";
 
 
-type GithubReposPage = {
+export type GithubReposPage = {
     repos: DashboardRepo[];
     totalCount: number;
     page: number;
